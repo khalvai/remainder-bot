@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  backend:
+    depends_on:
+      - database
+    build: .
+    volumes: 
+     - ./:/remainder-bot
+    ports:
+     - 3000:3000
+  database:
+    image: mongo:4.0-xenial
+    ports:
+      - 27019:27017
+    volumes:
+      - remainder:/data/db
+volumes:
+  remainder:
