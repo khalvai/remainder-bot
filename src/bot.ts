@@ -30,12 +30,12 @@ bot.command('new', async (ctx) => {
     return ctx.reply(".تاریخ وارد شده معتبر نمیباسد", { reply_to_message_id: chatId });
   }
      
-  userDate= new Date(converDateToMildai(userDate+""));
+  const userformatedDate= new Date(converDateToMildai(userDate+""));
 
   const meeting = new Meeting();
   const dateObject: meetingDocument = {
     userId: userId,
-    time: userDate,
+    time: userformatedDate,
     message: inputs[1],
   };
 
@@ -98,7 +98,7 @@ function yearEquals(meet: meetingDocument) {
   return currentYear === yearDate ? true : false;
 }
 
-setInterval(remmberDate, 1 * 60 * 1000);
+setInterval(remmberDate, 10*60 * 60 * 1000);
 
 bot.on('message', (ctx) => ctx.reply('Got aonther message'));
 
