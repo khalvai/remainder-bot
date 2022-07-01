@@ -1,5 +1,5 @@
 import { Bot, GrammyError, HttpError, Api } from 'grammy';
-import { format } from './text.formater';
+import { format ,isValidDate,converDateToMildai} from './text.formater';
 import { connect,} from './db/connect';
 import Meeting ,{getAllDates}from './controller/model.controller';
 import { meetingDocument } from './model/date.model';
@@ -24,8 +24,13 @@ bot.command('new', async (ctx) => {
   const userId = ctx.from?.id as number;
   const inputs = format(item);
   const chatId = ctx.msg.message_id as number;
-  const userDate = new Date(inputs[0]);
-  
+  let  userDate = inputs[0];
+ 
+  if(!isValidDate(userDate)){
+    return ctx.reply(".تاریخ وارد شده معتبر نمیباسد", { reply_to_message_id: chatId });
+  }
+     
+  userDate= new Date(converDateToMildai(userDate+""));
 
   const meeting = new Meeting();
   const dateObject: meetingDocument = {
