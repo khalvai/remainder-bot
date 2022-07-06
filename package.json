@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "npx ts-node ./src/bot.ts",
+    "start": "npx ts ./src/bot.ts & node ./dist/bot.js",
     "build": "tsc --project tsconfig.json"
   },
   "dependencies": {
