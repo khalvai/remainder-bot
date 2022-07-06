@@ -1,6 +1,5 @@
 {
   "scripts": {
-    "dev": "ts-node-dev --transpile-only --respawn src/bot.ts",
     "start": "npx ts-node ./src/bot.ts",
     "build": "tsc --project tsconfig.json"
   },
